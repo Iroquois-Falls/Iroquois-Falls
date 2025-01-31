@@ -1,3 +1,3 @@
-# iroquois-falls
+# Iroquois-falls
 
-"Welcome"
+Welcome to Iroquois Falls, a student project for Software Design!
