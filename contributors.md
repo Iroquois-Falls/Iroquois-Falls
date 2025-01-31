@@ -1,4 +1,4 @@
-Iroquois Falls Members:
-Gabriela Bolanos
-Andrea Poklar
+# Members:
+Gabriela Bolanos  
+Andrea Poklar  
 Makayla Lara
