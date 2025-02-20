@@ -76,8 +76,15 @@ WSGI_APPLICATION = "iroquoisapp.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": os.getenv("AZURE_DB_NAME", "if-mysql"),  
+        "USER": os.getenv("AZURE_DB_USER", "falls4"),
+        "PASSWORD": os.getenv("AZURE_DB_PASSWORD", "Iroquois24!"),
+        "HOST": os.getenv("AZURE_DB_HOST", "quois-db.mysql.database.azure.com"),
+        "PORT": os.getenv("AZURE_DB_PORT", "3306"),
+        "OPTIONS": {
+            "ssl": {"ssl-ca": "/etc/ssl/certs/ca-certificates.crt"},
+        },
     }
 }
 
