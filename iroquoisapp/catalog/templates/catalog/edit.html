@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+<form method="POST" class="post-form" action="/update/{{employee.id}}">
+	<div class="container">
+		<br>
+		<div class="form-group row">
+		<label class="col-sm-1 col-form-lable"></label>	
+			<div class="col-sm-4">
+				<h3>Update Details</h3>
+			</div>
+		</div>
+	
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-lable">User Name : </label>
+			<div class="col-sm-4">
+				<input type="text" name="userName" id="id_userName" value="{{ Users.userName }}"/>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-lable">User Email : </label>
+			<div class="col-sm-4">
+				<input type="text" name="userEmail" id="id_userName" value="{{ Users.userName }}"/>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-lable">User Role : </label>
+			<div class="col-sm-4">
+				<input type="text" name="role" id="id_role" value="{{ Users.role }}"/>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-lable">User Status : </label>
+			<div class="col-sm-4">
+				<input type="text" name="status" id="id_status" value="{{ Users.status }}"/>
+			</div>
+		</div>
+		<button type="submit">Update</button>
+	</div>
+
+</form>
+</body>
+</html>
