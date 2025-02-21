@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=100%">
+	<title>User Records</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+	<table class="table table-striped table-bordered table-sm">
+		<thead class="thead-dark">
+			<tr>
+				<th>User Name</th>
+				<th>User Email</th>
+				<th>User Role</th>
+				<th>User Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in Users %}
+			<tr>
+				<td>{{ Users.userName }}</td>
+				<td>{{ Users.userEmail }}</td>
+				<td>{{ Users.role }}</td>
+                <td>{{ Users.status }}</td>
+				<td>
+					<a href="/edit/{{ Users.id}}"><span class="glyphicon glyphicon-pencil">Update</span></a> | 
+					<a href="/delete/{{ Users.id}}">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<center><a href="/emp" class="btn btn-primary">Add New Record</a></center>
+</div>
+</body>
+</html>
