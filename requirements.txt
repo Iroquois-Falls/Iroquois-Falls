@@ -1,1 +1,6 @@
-Django
+django
+mysqlclient
+django-allauth
+requests
+pyjwt
+cryptography
