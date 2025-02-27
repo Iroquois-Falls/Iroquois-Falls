@@ -1,0 +1,31 @@
+{% extends "IroquoisFalls/base.html"%}
+
+{% block body %}
+    <h3 class= "text-center m-4">Update User</h3>
+    {% if success %}
+    <div class = "alert alert-success" role = "alert">
+        The user has been updated successfully. 
+        <a href = "{% url 'admindash' %}" class = "alert-link">Go to Homepage</a>
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <div class="card bg-light mb-3" style="width: 50rem;">
+            <div class="card-header text-center">
+                <i class="fa-solid fa-pen-to-square fa-lg"></i> Update User
+            </div>
+            <div class="card-body">
+                <h4 class="card-title text-center">Update User Details Below</h4>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{% url 'admindash' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endif %}
+
+{% endblock %}
