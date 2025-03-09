@@ -1,0 +1,52 @@
+{% extends "IroquoisFalls/homepage.html" %}
+<div class="container-fluid">
+    {% block body %}
+    <h3 class= "m-4"> Forms</h3>
+    <div class= "row">
+        <div class= "col-12">
+            <div class="card bg-light ms-4 me-4 mb-4">
+                <div class="card-header">
+                    <i class="fa-solid fa-list fa-lg"></i> Review a File
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class = "table-responsive" >
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">File Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for signature_request in signature_requests %}
+                                    <tr>
+                                        <td>{{signature_request.name}}</td>
+                                        <td>
+                                            {% if signature_request.approved %}
+                                            Approved
+                                            {% elif signature_request.approved is False %}
+                                            Denied
+                                            {% else %}
+                                            Pending
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-info"><i class="fa-solid fa-eye"></i></button>
+                                            <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            <button type="submit" name="action_{{ signature_request.id }}" value="approve" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
+                                            <button type="submit" name="action_{{ signature_request.id }}" value="deny" class="btn btn-danger me-1"><i class="fa-solid fa-xmark"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>

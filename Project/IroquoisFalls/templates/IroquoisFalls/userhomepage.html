@@ -72,6 +72,50 @@
     <!-- Main Content -->
     <div class="container-fluid">
        {% block body %}
+       <h3 class= "m-4"> Forms</h3>
+       <div class= "row">
+           <div class= "col-12">
+               <div class="card bg-light ms-4 me-4 mb-4">
+                   <div class="card-header">
+                       <i class="fa-solid fa-list fa-lg"></i> Request a File
+                   </div>
+                   <div class="card-body">
+                     
+                     <p class="card-text">
+                       <div class = "table-responsive" >
+                           <table class="table table-hover">
+                               <thead>
+                                 <tr>
+                                   <th scope="col">File Name</th>
+                                   <th scope="col">Status</th>
+                                   <th scope="col">Actions</th>
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <td>Inter-Institutional Course Registration Form</td>
+                                       <td>Pending</td>
+                                       <td>
+                                           <button type="button" class="btn btn-info"><i class="fa-solid fa-eye"></i></button>
+                                           <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td>Undergraduate General Petition</td>
+                                       <td>Pending</td>
+                                       <td>
+                                           <button type="button" class="btn btn-info"><i class="fa-solid fa-eye"></i></button>
+                                           <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                       </td>
+                                   </tr>
+                               </tbody>
+                             </table>
+                       </div>
+                     </p>
+                   </div>
+                 </div>
+           </div>
+       </div>
        {% endblock %}
     </div>
 

@@ -3,9 +3,9 @@ import string
 from django.http import JsonResponse
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
-from .models import Users
+from .models import Users, SignatureRequest
 from .forms import UserForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password    
@@ -177,6 +177,25 @@ def my_login(request):
             messages.error(request, "Invalid email or password.")  # Show error message
 
     return render(request, "IroquoisFalls/login.html")
+
+@user_passes_test(lambda u: u.is_superuser)
+def ApproveDeny(request):
+    form1 = SignatureRequest.objects.filter(name='Inter-Institutional Course Registration Form')
+    form2 = SignatureRequest.objects.filter(name='Undergraduate General Petition')
+    #signature_requests = SignatureRequest.objects.all()
+    signature_requests = form1.union(form2)
+    
+    if request.method == 'POST':
+        for signature_request in signature_requests:
+            action = request.POST.get(f'action_{signature_request.id}')
+            if action == 'approve':
+                signature_request.approved = True
+            elif action == 'deny':
+                signature_request.approved = False
+            signature_request.save()
+        
+        return redirect('adminforms.html')
+    return render(request, 'adminforms.html', {'signature_requests':signature_requests})
 
 from django.contrib.auth import authenticate, login
 

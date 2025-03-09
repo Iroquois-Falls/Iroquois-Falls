@@ -35,3 +35,15 @@ class Users(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+class SignatureRequest(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE)
+    document_path = models.FileField(upload_to='documents/', null=True, blank=True)
+    signed_document = models.FileField(upload_to='signed_documents/', null=True, blank=True)
+    signed = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"Request by {self.user.username} for approval"
