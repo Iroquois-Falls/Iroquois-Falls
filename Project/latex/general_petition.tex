@@ -1,0 +1,224 @@
+\documentclass{article}
+\usepackage[legalpaper, landscape, margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{blindtext}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{pgffor}
+\usepackage{pifont,amssymb}
+\usepackage[shortlabels]{enumitem}
+
+\pagenumbering{gobble}
+
+\setlength{\topmargin}{-34mm}
+
+\begin{document}
+\begin{Form}
+
+
+\begin{multicols}{3}
+
+\setlength{\hsize}{0.9\hsize}
+\title*{\noindent \textbf{\Huge General Petition}}
+\hfill
+\columnbreak
+\parbox{1.5\columnwidth}{\scriptsize{\textbf{"State Law} requires that you be informed of the following: (1) with few exceptions, you are entitled on request to be Informed about the information the university collects about you by use of this form; (2) under sections552.021 and 552.023 of the Government Code, you are entitled to receive and review the information; and (3) under section 559.004 of the Government Code, you are entitled to have the university correct information about you that is incorrect"} }
+
+\end{multicols}
+
+\begin{multicols}{2}
+
+
+\noindent Name \hspace{0.5cm}\TextField[name=last-name, width=5.5cm]{}
+\hspace{0.5cm}\TextField[name=first-name, width=5.5cm]{} \hspace{0.5cm}\TextField[name=middle-name, width=5.5cm]{} 
+\vspace{1mm}
+\noindent \hspace{1.3cm}
+\makebox[2cm][l]{Last,}
+\hspace{3.9cm} \makebox[6.5cm][l]{First,}
+\hspace{-0.7cm} \makebox[0.2cm][l]{Middle}
+
+\noindent \parbox{0.8\columnwidth}{My UH\# / HA\# \TextField[name=psid, width=4.3cm]{}
+    Phone Number \TextField[name=phone, width=3cm]{}} 
+\\[1mm]
+\noindent Mailing Address \TextField[name=address, width=16.1cm]{} 
+\\[1mm]
+\noindent City \TextField[name=city, width=4cm]{}
+State \TextField[name=state, width=2.5cm]{}
+ZIP \TextField[name=zip, width=2cm]{}
+Email \TextField[name=email, width=6.5cm]{}
+
+\columnbreak
+
+\noindent
+\hspace{3cm}
+\parbox{0.5\columnwidth}{
+    \vspace{-3mm}
+    \fbox{
+        \parbox{0.28\textwidth}{
+            \small To be completed by Advisor \\
+            \small Current \TextField[name=current-plan, width=1.5cm]{} \hspace{1.3cm}\small Current \TextField[name=current-career, width=1.5cm]{} \\
+            \small Student Program/Plan    \hspace{0.6cm}\smallStudent Academic Career
+            \\[0.01mm]
+            \small Petition Effective \TextField[name=effective-before, width=6.5cm]{}
+            \\[0.1mm]
+            \parbox{10cm}{\hspace{2.8cm}\small BEFORE first class day Semester/Year}
+            \small Petition Effective \TextField[name=effective-after, width=6.5cm]{}
+            \\[0.1mm]
+            \parbox{10cm}{\hspace{2.8cm}\small AFTER first class day Semester/Year}
+            
+            }
+        }
+    }
+
+\end{multicols}
+
+\vspace{-3mm}
+\noindent\rule{32cm}{0.01pt}
+
+Mark number for purpose of petition (For numbers with an "*" complete EXPLANATION OF REQUEST)
+
+
+\begin{multicols}{3}
+
+\noindent\hspace{0mm}
+\vspace{-5mm}
+\parbox{0.8\columnwidth}{
+    \CheckBox{ 1. Update Student's Program Status/action (readmit, term activate, etc.) \TextField[name=update, width=3cm]{} \\} \\[-3mm]
+    \CheckBox{ 2. Admission Status change from \TextField[name=status1, width=1.5cm]{} to \TextField[name=status2, width=1.5cm]{} } \\[-2mm]
+    \CheckBox{ 3. Add a new career \TextField[name=career, width=5.5cm]{} } \\
+    \\[-8.2mm]
+        \parbox{10cm}{\hspace{0.5cm}If post baccalaureate, indicate study objective:}
+        \CheckBox{ \parbox{10cm}{\hspace{1cm}Second bachelor's degree} } 
+        \CheckBox{ \parbox{10cm}{\hspace{0.5cm}Requirements for graduate study} }
+        \CheckBox{ \parbox{10cm}{\hspace{0.5cm}Teacher certification} }
+        \CheckBox{ \parbox{10cm}{\hspace{0.5cm}Personal enrichment} }
+    \\[-8.5mm]
+    
+    \CheckBox{*4. Student request Program Change from \\ \TextField[name=change1, width=2cm]{} to \TextField[name=change2, width=2cm]{} }
+
+    }
+
+\columnbreak
+\parbox{0.8\columnwidth}{
+    \CheckBox{*5. Student requests plan(major) change from \\ \TextField[name=major1, width=3cm]{} to \TextField[name=major2, width=3cm]{} \\} \\
+    \parbox{10cm}{\CheckBox{*6. Degree objective/plan change (B.A,B.S,B.B.A., etc.)} }
+    \parbox{10cm}{\hspace{1cm}from \TextField[name=plan1, width=2.5cm]{} to \TextField[name=plan2, width=2.5cm]{}}
+    \footnotesize If you are pursuing or intend to pursue more than one degree and plan at the same time, indicate second degree information under EXPLANATION OF REQUEST. (See number 5 if you are changing plan as well. \\
+    \parbox{10cm}{\CheckBox{*7. Requirement Term(year):} }
+    UH Catalog/Career \TextField[name=catalog, width=1.5cm]{} Program/Plan \TextField[name=program, width=1.5cm]{}  \\
+    \parbox{10cm}{\CheckBox{*8. Student Requests Additional Plan} }
+    \TextField[name=plan, width=2.5cm]{} BA/BS/Other\TextField[name=other, width=2.5cm]{} \\
+    Is new plan your \CheckBox{primary} or \CheckBox{secondary plan?} \\
+    \scriptsize Indicate any other plan and/or minors you are currently \\ 
+    pursuing Under EXPLANATION OF REQUEST.(See number 6 if you are Changing degree objectives.)
+    }
+
+\columnbreak
+\parbox{0.8\columnwidth}{
+    \CheckBox{*9. Add second Degree in \\}
+    \TextField[name=degree, width=3cm]{} BA/BS/Other\TextField[name=other, width=3cm]{} \\
+    \parbox{10cm}{\CheckBox{*10. Student request removal or change of minor from } }
+    \TextField[name=minor1, width=3cm]{} to \TextField[name=minor2, width=3cm]{} \\
+    \parbox{10cm}{\CheckBox{*11. Add additional Minor in \TextField[name=minor, width=4cm]{} } } 
+    \\[-1mm]
+    \parbox{10cm}{\CheckBox{*12. Degree requirement exception } } \\
+    \parbox{10cm}{\CheckBox{*13. Special Problem courses request (Indicate course(s), \\
+    course description and instructor.)}}
+    \parbox{10cm}{\CheckBox{*14. Course overload (indicate G.P.A., number of hours } \\
+    and courses)}
+    \parbox{10cm}{\CheckBox{*15. Graduate studies leave of absence}}
+    \parbox{10cm}{\CheckBox{*16. Graduate studies reinstatement}}
+    \parbox{10cm}{\CheckBox{*17. Other}}
+    
+}
+    
+\end{multicols}
+\vspace{-3mm}
+\noindent EXPLANATION OF REQUEST: \\
+    \foreach \i in {1, 2, 3} {
+        \TextField[name=explanation, width=32cm]{} \\
+    }
+
+\noindent Signature of Student \rule{10cm}{0.4pt} Date \TextField[name=date, width=5cm]{}
+
+\noindent\rule{32cm}{0.01pt}
+
+\hspace{12cm}\textbf{\Large ACADEMIC OFFICE USE ONLY}
+\vspace{-1mm}
+\begin{multicols}{3}
+
+\begin{tabular}{l@{\hspace{-3cm}}c @{\hspace{-2.3cm}} c}
+\parbox{1\columnwidth}{
+    \CheckBox{ Approved} \\
+    \CheckBox{Disapproved} 
+    Advisor/Instructor
+
+    \CheckBox{Approved} \\
+    \CheckBox{Disapproved} 
+    Chairperson
+
+    \CheckBox{Approved} \\
+    \CheckBox{Disapproved} 
+    College Dean
+
+    \CheckBox{Approved} \\
+    \CheckBox{Disapproved} 
+    Sr. Vice President/Provost \\
+    \parbox{10cm}{\hspace{0.8cm}(General degree requirement exception only)}
+} &
+
+\columnbreak
+
+
+\parbox{1.5\columnwidth}{
+\vspace{5mm}
+    \noindent \rule{5cm}{0.4pt}  
+    \hspace{0.1cm} \TextField[name=p-name, width=5cm]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=2.8cm]{}\\[0.2mm]
+    \hspace{2.5cm} Signature \hspace{3.6cm} Print Name \hspace{3.2cm} Date 
+
+\vspace{2mm}
+    \noindent \rule{5cm}{0.4pt}  
+    \hspace{0.1cm} \TextField[name=p-name, width=5cm]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=2.8cm]{}\\[0.2mm]
+    \hspace{2.5cm} Signature \hspace{3.6cm} Print Name \hspace{3.2cm} Date 
+
+\vspace{2mm}
+   \noindent \rule{5cm}{0.4pt}  
+    \hspace{0.1cm} \TextField[name=p-name, width=5cm]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=2.8cm]{}\\[0.2mm]
+    \hspace{2.5cm} Signature \hspace{3.6cm} Print Name \hspace{3.2cm} Date 
+
+\vspace{2mm}
+    \noindent \rule{5cm}{0.4pt}  
+    \hspace{0.1cm} \TextField[name=p-name, width=5cm]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=2.8cm]{}\\[0.2mm]
+    \hspace{2.5cm} Signature \hspace{3.6cm} Print Name \hspace{3.2cm} Date 
+    
+} &
+
+\columnbreak
+
+\parbox{0.5\columnwidth}{
+    \fbox{
+        \parbox{0.25\textwidth}{
+            \textbf{COMMENTS} 
+            \\[-1mm]
+            \foreach \i in {1, 2, 3, 4, 5}{
+            \\[1.5mm]
+            \TextField[name=comments, width=8cm]{}
+            
+            }
+            \\[5cm]
+        }
+    }
+}
+
+    \end{tabular}
+\end{multicols}
+
+\end{Form}
+\end{document}
