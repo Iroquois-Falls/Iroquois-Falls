@@ -5,7 +5,7 @@ import subprocess
 import base64
 import json
 from django.http import JsonResponse, HttpResponse, Http404
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Users, StatusRequest, Signature
 from .forms import UserForm
@@ -264,6 +264,46 @@ def save_signature(request):
             
             return JsonResponse({'success': True})
     return JsonResponse({'success': False})
+
+def update_status(request, statreq_id):
+    statreq = get_object_or_404(StatusRequest, id=statreq_id)
+    
+    if request.method == 'POST':
+        statreq.status = 'pending'
+        statreq.save()
+    return redirect('userhomepage')
+
+def cancel_request(request, statreq_id):
+    statreq = get_object_or_404(StatusRequest, id=statreq_id)
+    
+    if request.method == 'POST' and statreq.status != 'draft':
+        statreq.status = 'draft'
+        statreq.save()
+    return redirect('userhomepage')
+
+def reject_request(request, statreq_id):
+    statreq = get_object_or_404(StatusRequest, id=statreq_id)
+    
+    if request.method == 'POST' and statreq.status != 'rejected':
+        statreq.status = 'rejected'
+        statreq.save()
+    return redirect('adminforms')
+
+def accept_request(request, statreq_id):
+    statreq = get_object_or_404(StatusRequest, id=statreq_id)
+    
+    if request.method == 'POST' and statreq.status != 'accepted':
+        statreq.status = 'accepted'
+        statreq.save()
+    return redirect('adminforms')
+
+def return_request(request, statreq_id):
+    statreq = get_object_or_404(StatusRequest, id=statreq_id)
+    
+    if request.method == 'POST' and statreq.status != 'returned':
+        statreq.status = 'returned'
+        statreq.save()
+    return redirect('adminforms')
 
 from django.contrib.auth import authenticate, login
 

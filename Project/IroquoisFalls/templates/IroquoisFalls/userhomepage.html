@@ -103,11 +103,20 @@
                                                             <i class="fa-solid fa-eye"></i>
                                                     </a>
                                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pdfModal">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                        <i class="fa-solid fa-signature"></i>
                                                     </button>
-                                                    <button type="submit" class="btn btn-success">
-                                                        <i class="fa-solid fa-check"></i>
-                                                    </button>
+                                                    <form method="POST" action="{% url 'update_status' statreq.id %}" style="display:inline;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-success">
+                                                            <i class="fa-solid fa-check"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form method="POST" action="{% url 'cancel_request' statreq.id %}" style="display:inline;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa-solid fa-xmark"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             {% endfor %}

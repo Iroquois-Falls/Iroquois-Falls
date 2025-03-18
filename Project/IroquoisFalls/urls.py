@@ -20,4 +20,9 @@ urlpatterns = [
     path('generate-password/', views.generate_password, name='generate_password'),
     path('latPdf/<str:file_name>/', views.latPdf, name='latPdf'),
     path('save-signature/', views.save_signature, name='save_signature'),
+    path('update-status/<int:statreq_id>/', views.update_status, name='update_status'),
+    path('cancel-request/<int:statreq_id>/', views.cancel_request, name='cancel_request'),
+    path('reject-request/<int:statreq_id>/', views.reject_request, name='reject_request'),
+    path('accept-request/<int:statreq_id>/', views.accept_request, name='accept_request'),
+    path('return-request/<int:statreq_id>/', views.return_request, name='return_request'),
 ]

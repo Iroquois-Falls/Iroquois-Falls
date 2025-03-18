@@ -15,30 +15,47 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">File Name</th>
+                                        <th scope="col">Requested By</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">View and Sign</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for signature_request in signature_requests %}
+                                    {% for statreq in statreqs %}
+                                    {% for user in Users%}
                                     <tr>
-                                        <td>{{signature_request.name}}</td>
+                                        <td>{{ statreq.get_title_display }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ statreq.get_status_display }}</td>
                                         <td>
-                                            {% if signature_request.approved %}
-                                            Approved
-                                            {% elif signature_request.approved is False %}
-                                            Denied
-                                            {% else %}
-                                            Pending
-                                            {% endif %}
+                                            <a href="{% url 'latPdf' statreq.get_title_display %}" class="btn btn-info" target="_blank">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-signature"></i></button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-info"><i class="fa-solid fa-eye"></i></button>
-                                            <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button type="submit" name="action_{{ signature_request.id }}" value="approve" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
-                                            <button type="submit" name="action_{{ signature_request.id }}" value="deny" class="btn btn-danger me-1"><i class="fa-solid fa-xmark"></i></button>
+                                            <form method="POST" action="{% url 'return_request' statreq.id %}" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-secondary">
+                                                    <i class="fa-solid fa-rotate"></i>
+                                                </button>
+                                            </form>
+                                            <form method="POST" action="{% url 'accept_request' statreq.id %}" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-success">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </form>
+                                            <form method="POST" action="{% url 'reject_request' statreq.id %}" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger me-1">
+                                                    <i class="fa-solid fa-xmark"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
+                                    {% endfor %}
                                     {% endfor %}
                                 </tbody>
                             </table>
