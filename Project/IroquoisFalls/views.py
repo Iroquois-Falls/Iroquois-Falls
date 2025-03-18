@@ -1,14 +1,24 @@
 import secrets
 import string
-from django.http import JsonResponse
+import os
+import subprocess
+import base64
+import json
+from django.http import JsonResponse, HttpResponse, Http404
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
-from .models import Users, SignatureRequest
+from .models import Users, StatusRequest, Signature
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.hashers import make_password    
+from django.contrib.auth.hashers import make_password  
+from django.core.files.base import ContentFile
+from django.conf import settings
+from subprocess import run
+from django.views.decorators.csrf import csrf_exempt
+from PIL import Image
+from io import BytesIO  
 
 # Redirect users after login based on `is_admin`
 @login_required(login_url='/accounts/login/')
@@ -32,7 +42,14 @@ def homepage(request):
 # User Homepage (for non-admins)
 @login_required
 def user_homepage(request):
-    return render(request, "IroquoisFalls/userhomepage.html", {'user': request.user})
+    try:
+        statreqs = StatusRequest.objects.all()
+    except StatusRequest.DoesNotExist:
+        raise Http404("Object not found")
+    
+    return render(request, "IroquoisFalls/userhomepage.html", {
+        'user': request.user, 
+        'statreqs': statreqs})
 
 def userprofilepage(request):
     return render(request, "IroquoisFalls/userprofilepage.html", {'user': request.user})
@@ -178,24 +195,65 @@ def my_login(request):
 
     return render(request, "IroquoisFalls/login.html")
 
-@user_passes_test(lambda u: u.is_superuser)
-def ApproveDeny(request):
-    form1 = SignatureRequest.objects.filter(name='Inter-Institutional Course Registration Form')
-    form2 = SignatureRequest.objects.filter(name='Undergraduate General Petition')
-    #signature_requests = SignatureRequest.objects.all()
-    signature_requests = form1.union(form2)
+def latPdf(request, file_name):
+    title_map = {
+        'Inter-Institutional Course Registration Form': 'inter_institutional_course_registration',
+        'Undergraduate General Petition': 'undergraduate_general_petition',
+    }
     
-    if request.method == 'POST':
-        for signature_request in signature_requests:
-            action = request.POST.get(f'action_{signature_request.id}')
-            if action == 'approve':
-                signature_request.approved = True
-            elif action == 'deny':
-                signature_request.approved = False
-            signature_request.save()
+    if file_name not in title_map:
+        return HttpResponse('Title not found', status=400)
+    
+    latex_path = os.path.expanduser(f'~/Project/IroquoisFalls/templates/{file_name}/{file_name}.tex')
+    pdf_path = os.path.expanduser(f'~/Project/IroquoisFalls/templates/{file_name}/{file_name}.pdf')
+    sig_path = os.path.expanduser(f'~/Project/IroquoisFalls/templates/Signatures/')
+    
+    db_title = title_map[file_name]
+    status_request = StatusRequest.objects.get(title=db_title)
+    signature = status_request.signature
+    
+    if signature:
+        signature_image_path = signature.signature_image.path
+        dest_path = os.path.join(os.path.dirname(sig_path), "signature.png")
         
-        return redirect('adminforms.html')
-    return render(request, 'adminforms.html', {'signature_requests':signature_requests})
+        with open(dest_path, 'wb') as f:
+            with open(signature_image_path, 'rb') as signature_file:
+                f.write(signature_file.read())
+    
+    try:
+        cwd = os.path.dirname(latex_path)
+        result = subprocess.run(['pdflatex', latex_path], check=True, cwd=cwd)
+        
+        if result.stderr:
+            return HttpResponse('Compilation error: {result.stderr}', status=500)
+        if not os.path.exists(pdf_path):
+            return HttpResponse('File not found', status=500)
+    except subprocess.CalledProcessError as e:
+        return HttpResponse(f'PDF generation error: {e}', status=500)
+    
+    with open(pdf_path, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'inline; filename={file_name}.pdf'
+        return response
+
+@csrf_exempt
+def save_signature(request):
+    if request.method == "POST":
+        print(f'post request for {request}')
+        data = json.loads(request.body)
+        signature_data = data.get('signature')
+        document_title = data.get('document_title', 'Unknown Document')
+        
+        if signature_data:
+            format, imgstr = signature_data.split(';base64,')
+            ext = format.split('/')[-1]
+            signature_image = ContentFile(base64.b64decode(imgstr), name="signature.png")
+            
+            signature = Signature(user=request.user, signature_image=signature_image, document_title=document_title)
+            signature.save()
+            
+            return JsonResponse({'success': True})
+    return JsonResponse({'success': False})
 
 from django.contrib.auth import authenticate, login
 

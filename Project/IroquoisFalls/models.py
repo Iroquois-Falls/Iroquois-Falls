@@ -36,14 +36,35 @@ class Users(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-class SignatureRequest(models.Model):
+class Signature(models.Model):
     user = models.ForeignKey(Users, on_delete=models.CASCADE)
-    document_path = models.FileField(upload_to='documents/', null=True, blank=True)
-    signed_document = models.FileField(upload_to='signed_documents/', null=True, blank=True)
-    signed = models.BooleanField(default=False)
-    approved = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    signature_image = models.ImageField(upload_to='IroquoisFalls/templates/Signatures/', null=True, blank=True)
+    document_title = models.CharField(max_length=255)
+    signed_at = models.DateTimeField(auto_now_add=True)
+    
     
     def __str__(self):
-        return f"Request by {self.user.username} for approval"
+        return f"{self.user}'s signature on {self.document_title}"
+
+class StatusRequest(models.Model):
+    TITLE_CHOICES = [
+        ('inter_institutional_course_registration', 'Inter-Institutional Course Registration Form'),
+        ('undergraduate_general_petition', 'Undergraduate General Petition'),
+    ]
+    
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('returned', 'Returned'),
+        ('rejected', 'Rejected'),
+    ]
+    
+    title = models.CharField(max_length=255, choices=TITLE_CHOICES)
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default='draft',)
+    signature = models.ForeignKey(Signature, null=True, blank=True, on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f"{self.title}: {self.status}"
+    def get_status_display(self):
+        return dict(self.STATUS_CHOICES).get(self.status, 'Unknown')

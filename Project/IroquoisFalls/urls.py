@@ -8,8 +8,8 @@ urlpatterns = [
     path('userhomepage/', views.user_homepage, name='userhomepage'),
     path('userprofilepage/', views.userprofilepage, name='userprofilepage'),
     path('logout/', views.custom_logout, name='account_logout'),
-    path('admindash', views.AdminDash, name='admindash'),
-    path('adminforms', views.AdminForms, name='adminforms'),
+    path('admindash/', views.AdminDash, name='admindash'),
+    path('adminforms/', views.AdminForms, name='adminforms'),
     path('user/<int:id>/', views.AdminDashViewUser, name="view_user"),
     path('add/', views.AddUser, name="add"),
     path('edit/<int:id>/', views.EditUser, name="edit"),
@@ -18,5 +18,6 @@ urlpatterns = [
     #generating ID and password
     path('generate-id/', views.generate_id, name='generate_id'),
     path('generate-password/', views.generate_password, name='generate_password'),
-    
+    path('latPdf/<str:file_name>/', views.latPdf, name='latPdf'),
+    path('save-signature/', views.save_signature, name='save_signature'),
 ]

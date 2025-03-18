@@ -4,3 +4,5 @@ django-allauth
 requests
 pyjwt
 cryptography
+django_tex
+latex
