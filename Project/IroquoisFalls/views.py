@@ -79,6 +79,16 @@ def AdminDash(request):
         'Users': Users.objects.all()
     })
 
+@login_required
+def AdminForms(request):
+    try:
+        statreqs = StatusRequest.objects.all()
+    except StatusRequest.DoesNotExist:
+        raise Http404("Object not found")
+    
+    return render(request, "IroquoisFalls/AdminForms.html", {
+        'Users': Users.objects.all(), 
+        'statreqs': statreqs})
 
 # View a Specific User (Admin)
 @login_required
