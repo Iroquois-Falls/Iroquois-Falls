@@ -12,6 +12,8 @@
 \usepackage[a4paper, margin=.5in]{geometry}
 \graphicspath{ {./images/} }
 \usepackage{hyperref}
+\usepackage{pifont}
+\usepackage[x11names]{xcolor}
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
 \urlstyle{same}
 
@@ -101,53 +103,57 @@
 
 {\underline{\textbf{Demographic Information}}}
 \begin{center}
-\noindent\textbf{\footnotesize Name:}   \hrulefill
-\textbf{\footnotesize Gender:} $\square$ \footnotesize Male \quad $\square$ \footnotesize Female  
+    \textbf{\footnotesize Name:} \TextField[name=fullname, width=10cm]{}
+    \hrulefill 
+    \hspace{1cm} 
+    \textbf{\footnotesize Gender:} 
+    \CheckBox[name=male, checkboxsymbol=\ding{52}] \quad {\footnotesize Male} \quad
+    \CheckBox[name=female, checkboxsymbol=\ding{52}] \quad {\footnotesize Female}
 
 \vspace{0.4cm}
 
-\textbf{\footnotesize Date of Birth:} \hrulefill  
+\textbf{\footnotesize Date of Birth: \TextField[name=dob, width=5cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Current Address:} \hrulefill  
+\noindent\textbf{\footnotesize Current Address:\TextField[name=address, width=15cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize City:} \hrulefill \quad \textbf{\footnotesize State:} \hrulefill  
+\noindent\textbf{\footnotesize City:\TextField[name=city, width=10cm]{}} \hrulefill \quad \textbf{\footnotesize State:\TextField[name=last-name, width=5cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Zip Code:} \hrulefill \quad \textbf{\footnotesize Country:} \hrulefill  
+\noindent\textbf{\footnotesize Zip Code:\TextField[name=zipcode, width=5cm]{}} \hrulefill \quad \textbf{\footnotesize Country:\TextField[name=last-name, width=8cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Home Phone:} \hrulefill \quad \textbf{\footnotesize Cell Phone:} \hrulefill  
+\noindent\textbf{\footnotesize Home Phone:\TextField[name=homephone, width=5cm]{}} \hrulefill \quad \textbf{\footnotesize Cell Phone:\TextField[name=last-name, width=5cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Email:} \hrulefill  
+\noindent\textbf{\footnotesize Email:\TextField[name=email, width=15cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Social Security Number:} \hrulefill (optional)  
+\noindent\textbf{\footnotesize Social Security Number:\TextField[name=socialsecurity, width=5cm]{}} \hrulefill (\footnotesize optional)  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Place of Birth:} \hrulefill \quad \textit{(\footnotesize City, State, Country)}  
+\noindent\textbf{\footnotesize Place of Birth:\TextField[name=place-of-birth, width=15cm]{}} \hrulefill \quad \textit{(\footnotesize City, State, Country)}  
 
 \begin{tabular}{p{8cm} p{8cm}}
-\textbf{\footnotesize Are you a U.S. Citizen?} $\square$ Yes \quad $\square$ No &  
-\textbf{\footnotesize Are you classified as a Texas resident at your home institution?} $\square$ Yes \quad $\square$ No  
+    \textbf{\footnotesize Are you a U.S. Citizen?} \CheckBox[name=yescitizen,checkboxsymbol=\ding{52}] \quad \quad {Yes} \quad \CheckBox[name=nocitizen,checkboxsymbol=\ding{52}] \quad \quad {No} &
+    \textbf{\footnotesize Are you classified as a Texas resident at your home institution?} \CheckBox[name=texasresyes,checkboxsymbol=\ding{52}] \quad \quad {Yes} \quad \CheckBox[name=texasresno,checkboxsymbol=\ding{52}] \quad \quad {No}   
 \end{tabular} 
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize If not a U.S. Citizen, what is your visa type and status?} \hrulefill  
+\noindent\textbf{\footnotesize If not a U.S. Citizen, what is your visa type and status? \TextField[name=visatype, width=10cm]{}} \hrulefill  
 
 \vspace{0.4cm}
 
-\noindent\textbf{\footnotesize Criminal Background Check on file at home institution?} $\square$ Yes \quad $\square$ No  
+\noindent\textbf{\footnotesize Criminal Background Check on file at home institution?} \CheckBox[name=criminalyes, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Yes} \quad \CheckBox[name=criminalno, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize No}
 
 \vspace{0.2cm}
 
@@ -156,25 +162,25 @@
 
 \noindent{\underline{\textbf{Race/Ethnicity}}}\\
 \begin{flushleft}
-\noindent{\footnotesize Are you Hispanic/Latino?} \hspace{1cm} $\square$ \footnotesize Yes, Hispanic or Latino (including Spain) \hspace{1cm} $\square$ \footnotesize No  
+    \noindent{\footnotesize Are you Hispanic/Latino?} \CheckBox[name=hispanicyes, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Yes} \quad \CheckBox[name=hispanicno, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize No}   
 
 \vspace{0.2cm}
 \noindent\textit{\footnotesize Regardless of your answer to the previous question, select one or more of the following ethnicities that best describe you.}  
 
 \vspace{0.2cm}
-\noindent $\square$ \footnotesize American Indian or Alaska Native (including all Original Peoples of the Americas) \hspace{1cm} \underline{\hspace{4cm}}
+\noindent \CheckBox[name=americanIndian, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize American Indian or Alaska Native (including all Original Peoples of the Americas)}  \hspace{1cm} \underline{\hspace{4cm}}
 
 \vspace{0.2cm}
-\hspace{2cm} \footnotesize Are you enrolled? \hspace{1cm} $\square$ \footnotesize Yes. Please list your Tribal Enrollment Number: \underline{\hspace{4cm}} \hspace{1cm} $\square$ \footnotesize No
+\hspace{2cm} \footnotesize Are you enrolled? \hspace{1cm} \CheckBox[name=yesenrolled, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Yes. Please list your Tribal Enrollment Number:\TextField[name=tibenumber, width=3cm]{}} \hspace{.02cm} \CheckBox[name=enrolledno, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize No} 
 
 \vspace{0.2cm}
-\noindent $\square$ \footnotesize Asian (including Indian subcontinent and Philippines) \hspace{2cm} $\square$ \footnotesize Native Hawaiian or Other Pacific Islander (Original Peoples)  
+\noindent \CheckBox[name=asian, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Asian (including Indian subcontinent and Philippines)} \hspace{2cm} \CheckBox[name=pacificislander, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Native Hawaiian or Other Pacific Islander (Original Peoples)}
 
 \vspace{0.2cm}
-\noindent $\square$ \footnotesize Black or African American (including Africa and Caribbean) \hspace{2cm} $\square$ \footnotesize White (including Middle Eastern)  
+\noindent \CheckBox[name=africanamerican, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Black or African American (including Africa and Caribbean} \hspace{2cm} \CheckBox[name=white, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize White (including Middle Eastern)}  
 
 \vspace{0.2cm}
-\noindent {\footnotesize Please describe yourself:} \hrulefill{\hspace{15cm}}
+\noindent {\footnotesize Please describe yourself:\TextField[name=describeyourself, width=15cm]{}} \hrulefill{\hspace{15cm}}
 \end{flushleft}
 
 \footnotesize \noindent E-mail \href{mailto:registrar@rice.edu}{\footnotesize registrar@rice.edu} \footnotesize I Office 713-348-4999 I Fax 713-348-5921 I Office of the Registrar-MS 57 I 6100 Main St. I Houston, TX 77005 I \href{http://registrar.rice.edu}{\footnotesize registrar.rice.edu}
@@ -182,51 +188,42 @@
 \section*{Institution Information}
 I am a full-time graduate student at:\\
 \begin{tabular*}{\textwidth}{@{\extracolsep{6pt}} lll}
-    $\square$ \footnotesize Baylor College of Medicine & $\square$ \footnotesize UT Health Science Center & $\square$ \footnotesize Texas A\&M IBT \\
-    $\square$ \footnotesize University of Houston  & $\square$ Rice University & \makebox[6cm][l]{Home Institution Student ID Number: \hrulefill} \\
-    $\square$ University of Texas Medical Branch  & $\square$ MD Anderson Cancer Center  & Anticipated Graduation Date: \hrulefill
+    \CheckBox[name=baylormedicine, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Baylor College of Medicine} & \CheckBox[name=uthealthscience, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize UT Health Science Center } & \CheckBox[name=texasatmibt, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Texas A\&M IBT} \\
+    \CheckBox[name=uh, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize University of Houston} & \CheckBox[name=rice, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Rice University } & \hspace{.9cm} \makebox[6cm][l]{\footnotesize Home Institution Student ID Number:\TextField[name=studentID, width=2cm]{}} \\
+    \CheckBox[name=medicalbranch, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize University of Texas Medical Branch}  & \CheckBox[name=mdanderson, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize MD Anderson Cancer Center}  & \hspace{.9cm} {\footnotesize Anticipated Graduation Date:\TextField[name=graduationDate, width=3cm]{}} \\
 \end{tabular*}
 
 \vspace{0.5cm}
 
 \noindent I wish to enroll in a course or courses under the inter-institutional agreement at:\\
 \begin{tabular*}{\textwidth}{@{\extracolsep{6pt}} lll}
-    $\square$ Baylor College of Medicine & $\square$ UT Health Science Center & $\square$ MD Anderson Cancer Center \\
-    $\square$ University of Houston  & $\square$ Rice University & $\square$ Texas A\&M University IBT \\
-    $\square$ University of Texas Medical Branch  & \makebox[6cm][l]{Host Institution Student ID Number: \hrulefill} &  \\
-    & \makebox[6cm][l]{Host Institution Credit Hours Previously Completed (if previously attended): \hrulefill} &  \\
+    \CheckBox[name=baylormedicine2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Baylor College of Medicine} & \CheckBox[name=uthealthscience2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize UT Health Science Center } & \CheckBox[name=mdanderson2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize MD Anderson Cancer Center} \\
+    \CheckBox[name=uh2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize University of Houston} & \CheckBox[name=rice2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Rice University } & \CheckBox[name=texasatmibt2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Texas A\&M IBT} \\
+    \CheckBox[name=medicalbranch2, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize University of Texas Medical Branch} & \hspace{.95cm}{\footnotesize Home Institution Student ID Number:\TextField[name=studentID2, width=2cm]{}} &  \\
+    & {\footnotesize Host Institution Credit Hours Previously Completed (if previously attended):\TextField[name=creditHours, width=2cm]{}}  \\
 \end{tabular*}
 
 \section*{Course Information}
-Semester: $\qquad$ $\square$ Spring $\qquad$ $\square$ Fall $\qquad$ $\square$ Summer $\qquad$
+Semester: \CheckBox[name=springsemester, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Spring}  \CheckBox[name=summersemester, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Summer }  \CheckBox[name=fallsemester, checkboxsymbol=\ding{52}] \quad \quad {\footnotesize Fall}
 
 \begin{flushleft}
-\begin{tabularx}{\textwidth}{|X|X|c|X|c|}
-\hline
-\begin{tabular}{c} \textbf{Subject/Course \#} \\ (\tiny e.g. Math 212) \end{tabular}  
-& \begin{tabular}{c} \textbf{Course Title} \\ (\tiny e.g. Multivariate Calculus) \end{tabular}  
-& \begin{tabular}{c} \textbf{Credit Hours} \end{tabular}  
-& \begin{tabular}{c} \textbf{Instructor Signature} \end{tabular}  
-& \begin{tabular}{c} \textbf{Date} \end{tabular} \\
-\hline
-\rule{0pt}{20pt} &  &  &  &  \\  % Adjust row height
-\hline
-\end{tabularx}
-\end{flushleft}
-
-\begin{flushleft}
-\begin{tabularx}{\textwidth}{|X|X|c|X|c|}
-\hline
-\begin{tabular}{c} \textbf{Subject/Course \#} \\ (\tiny e.g. Math 212) \end{tabular}  
-& \begin{tabular}{c} \textbf{Course Title} \\ (\tiny e.g. Multivariate Calculus) \end{tabular}  
-& \begin{tabular}{c} \textbf{Credit Hours} \end{tabular}  
-& \begin{tabular}{c} \textbf{Instructor Signature} \end{tabular}  
-& \begin{tabular}{c} \textbf{Date} \end{tabular} \\
-\hline
-\rule{0pt}{20pt} &  &  &  &  \\  % Adjust row height
-\hline
-\end{tabularx}
-\end{flushleft}
+    \begin{tabularx}{\textwidth}{|X|X|c|X|c|}
+    \hline
+    \begin{tabular}{c} \textbf{Subject/Course \#} \\ (\tiny e.g. Math 212) \end{tabular}  
+    & \begin{tabular}{c} \textbf{Course Title} \\ (\tiny e.g. Multivariate Calculus) \end{tabular}  
+    & \begin{tabular}{c} \textbf{Credit Hours} \end{tabular}  
+    & \begin{tabular}{c} \textbf{Instructor Signature} \end{tabular}  
+    & \begin{tabular}{c} \textbf{Date} \end{tabular} \\
+    \hline
+    \TextField[name=subject, width=3cm]{}
+    & \TextField[name=courseTitle, width=3cm]{}
+    & \TextField[name=creditHours, width=3cm]{}
+    & \TextField[name=instructorSignature, width=3cm]{}
+    & \TextField[name=date, width=3cm]{}
+    \\
+    \hline
+    \end{tabularx}
+    \end{flushleft}
 
 
 \section*{Approvals}
@@ -287,7 +284,15 @@ Semester: $\qquad$ $\square$ Spring $\qquad$ $\square$ Fall $\qquad$ $\square$ S
 \section*{Student Signature}
 \textit {By signing and submitting this agreement, you: 1) confirm that you meet the criteria to participate in this program; 2) confirm that the information you have supplied is correct; 3) consent to having the host institution send your home institution a transcript at the conclusion of the semester/term in which you are enrolled.}
 \newline
-Student Signature: \hrulefill $\qquad$ Date: \hrulefill $\qquad$
+Student Signature:
+\IfFileExists{../Signatures/signature.png}{%
+  \noindent
+  \raisebox{-0.1\height}{\includegraphics[width=0.3\textwidth, height=2cm]{../Signatures/signature.png}}
+  \hspace{-0.3\textwidth} \hrulefill
+  \hspace{0.1\textwidth} Date: \raisebox{0.1\height}{\today}
+  \hspace{-0.115\textwidth} \hrulefill 
+  \\[10pt]
+}
 
 
 \end{document}
