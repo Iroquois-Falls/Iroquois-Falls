@@ -246,7 +246,7 @@ def save_signature(request):
     return JsonResponse({'success': False})
      
 def latPdf(request, file_name, username):
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(file_name)))
+    BASE_DIR = settings.BASE_DIR
     latex_path = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', file_name, f'{file_name}.tex')
     pdf_path = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', file_name, f'{file_name}.pdf')
         
