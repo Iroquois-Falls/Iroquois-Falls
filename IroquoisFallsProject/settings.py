@@ -166,4 +166,4 @@ LOGIN_REDIRECT_URL = '/route-after-login/'
 LOGIN_URL = '/accounts/login/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'  
 AUTH_USER_MODEL = 'IroquoisFalls.Users'  # ✅ Use your custom Users model
-SOCIAL_AUTH_MICROSOFT_REDIRECT_URI = 'http://localhost:8000/accounts/microsoft/login/callback/'
+SOCIAL_AUTH_MICROSOFT_REDIRECT_URI = 'https://iroquois-falls.azurewebsites.net/accounts/microsoft/login/callback/'
