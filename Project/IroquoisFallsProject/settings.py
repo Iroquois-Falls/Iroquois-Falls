@@ -31,6 +31,8 @@ SECURE_SSL_REDIRECT = True
 
 CSRF_TRUSTED_ORIGINS = ['https://iroquois-falls.azurewebsites.net']
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
