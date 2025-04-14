@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['iroquois-falls.azurewebsites.net']
 
+SECURE_SSL_REDIRECT = True
+
 CSRF_TRUSTED_ORIGINS = ['https://iroquois-falls.azurewebsites.net']
 
 
