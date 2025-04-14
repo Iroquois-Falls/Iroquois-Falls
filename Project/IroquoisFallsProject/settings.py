@@ -151,8 +151,8 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {
     'microsoft': {
         'APP': {
-            'client_id': '3be91c1b-3e01-45bd-80c9-a070a1451cfe', 
-            'secret': '0ccaa186-509e-4eb3-8c86-87ebe7f5b577',  
+            'client_id': 'b0312905-3a38-4302-868a-85d3a8503c5c', 
+            'secret': 'b757690d-bfe6-42c3-b755-ab1d680a70a5',  
             'key': ''
         },
         'SCOPE': ['User.Read'],
