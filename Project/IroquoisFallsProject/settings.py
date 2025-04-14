@@ -159,7 +159,7 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         'SCOPE': ['User.Read'],
         'AUTH_PARAMS': {},
-        'REDIRECT_URI': 'https://mysite.azurewebsites.net/accounts/microsoft/login/callback/',
+        'REDIRECT_URI': 'https://iroquois-falls.azurewebsites.net/accounts/microsoft/login/callback/',
     }
 }
 
