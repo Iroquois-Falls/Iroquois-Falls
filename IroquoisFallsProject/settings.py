@@ -29,6 +29,8 @@ ALLOWED_HOSTS = ['iroquois-falls.azurewebsites.net']
 
 CSRF_TRUSTED_ORIGINS = ['https://iroquois-falls.azurewebsites.net']
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 
