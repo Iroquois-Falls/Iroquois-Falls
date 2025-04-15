@@ -217,6 +217,18 @@ def assignForms():
                 title = "undergraduate_general_petition",
                 status = "draft",
             )
+        if not StatusRequest.objects.filter(user=user, title="term_withdrawal").exists(): 
+            StatusRequest.objects.create(
+                user = user,
+                title = "term_withdrawal",
+                status = "draft",
+            )
+        if not StatusRequest.objects.filter(user=user, title="petition_form").exists(): 
+            StatusRequest.objects.create(
+                user = user,
+                title = "petition_form",
+                status = "draft",
+            )
 
 @csrf_exempt
 def save_signature(request):
@@ -249,36 +261,50 @@ def latPdf(request, file_name, username):
     BASE_DIR = settings.BASE_DIR
     latex_path = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', file_name, f'{file_name}.tex')
     pdf_path = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', file_name, f'{file_name}.pdf')
-        
-    signed_path = os.path.join(os.path.dirname(latex_path), 'Signed_Forms', f'{file_name}_{username}.tex')
-    signed_pdf_path = os.path.join(os.path.dirname(latex_path), 'Signed_Forms', f'{file_name}_{username}.pdf')
-    
-    shutil.copy(latex_path, signed_path)  
-    with open(signed_path, 'r') as f:
-        latex_content = f.read()
-    latex_content = latex_content.replace("{username}", username)
-    with open(signed_path, 'w') as f:
-        f.write(latex_content)
-    
-    if signed_path:
-        print(f"signature found for user {username} on document {file_name}.")
+
+    signature_dir = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', 'Signatures')
+    signature_file = os.path.join(signature_dir, f'signature_{username}.png')
+
+    signature = os.path.exists(signature_file)
+
+    if signature:
+        signed_dir = os.path.join(BASE_DIR, 'IroquoisFalls', 'templates', file_name, 'Signed_Forms')
+        os.makedirs(signed_dir, exist_ok=True)
+
+        signed_path = os.path.join(signed_dir, f'{file_name}_{username}.tex')
+        signed_pdf_path = os.path.join(signed_dir, f'{file_name}_{username}.pdf')
+
+        shutil.copy(latex_path, signed_path)
+
+        with open(signed_path, 'r') as f:
+            latex_content = f.read()
+        latex_content = latex_content.replace("{username}", username)
+        with open(signed_path, 'w') as f:
+            f.write(latex_content)
+
         compileLatex = signed_path
+        pdf_file_path = signed_pdf_path
     else:
-        print(f"No signature found for user {username} on document {file_name}.")
         compileLatex = latex_path
-        
+        pdf_file_path = pdf_path
+
     try:
         cwd = os.path.dirname(compileLatex)
-        result = subprocess.run(['pdflatex', compileLatex], check=True, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(
+            ['pdflatex', compileLatex],
+            check=True,
+            cwd=cwd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
         print("Output:", result.stdout.decode())
         print("Error:", result.stderr.decode())
-        
-        if not os.path.exists(pdf_path):
-            return HttpResponse('File not found', status=500)
-        pdf_file_path = signed_pdf_path if signed_path else pdf_path
     except subprocess.CalledProcessError as e:
         return HttpResponse(f'PDF generation error: {e}', status=500)
-    
+
+    if not os.path.exists(pdf_file_path):
+        return HttpResponse('Generated PDF not found', status=500)
+
     with open(pdf_file_path, 'rb') as pdf_file:
         response = HttpResponse(pdf_file.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'inline; filename={file_name}_{username}.pdf'
