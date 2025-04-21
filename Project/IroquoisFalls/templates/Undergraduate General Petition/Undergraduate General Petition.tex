@@ -13,7 +13,8 @@
 
 \pagenumbering{gobble}
 
-\setlength{\topmargin}{-34mm}
+\setlength{\topmargin}{-3.5cm}
+
 
 \begin{document}
 \begin{Form}
@@ -26,26 +27,27 @@
 
 \end{multicols}
 
+
 \begin{multicols}{2}
 
 
-\noindent Name\hspace{0.2cm}\TextField[name=last-name, width=5cm]{}
-\hspace{0.2cm}\TextField[name=first-name, width=5cm]{} \hspace{0.2cm}\TextField[name=middle-name, width=4cm]{} \\
+\noindent Name\hspace{0.2cm}\TextField[name=last-name, width=5cm, bordercolor=white]{}
+\hspace{0.2cm}\TextField[name=first-name, width=5cm, bordercolor=white]{} \hspace{0.2cm}\TextField[name=middle-name, width=4cm, bordercolor=white]{} \\
 \vspace{1mm}
 \noindent \hspace{1cm}
 \makebox[4cm][l]{Last,}
 \hspace{1cm} \makebox[4cm][l]{First,}
 \hspace{1cm} \makebox[0.2cm][l]{Middle}
 
-\noindent \parbox{0.8\columnwidth}{My UH\# / HA\# \TextField[name=psid, width=4.3cm]{}
-    Phone Number \TextField[name=phone, width=3.5cm]{}} 
+\noindent \parbox{0.8\columnwidth}{My UH\# / HA\# \TextField[name=psid, width=4.3cm, bordercolor=white]{}
+    Phone Number \TextField[name=phone, width=3.5cm, bordercolor=white]{}} 
 \\[1mm]
-\noindent Mailing Address \TextField[name=address, width=13cm]{} 
+\noindent Mailing Address \TextField[name=address, width=13cm, bordercolor=white]{} 
 \\[1mm]
-\noindent City \TextField[name=city, width=3cm]{}
-State \TextField[name=state, width=2cm]{}
-ZIP \TextField[name=zip, width=2cm]{}
-Email \TextField[name=email, width=5cm]{}
+\noindent City \TextField[name=city, width=3cm, bordercolor=white]{}
+State \TextField[name=state, width=2cm, bordercolor=white]{}
+ZIP \TextField[name=zip, width=2cm, bordercolor=white]{}
+Email \TextField[name=email, width=5cm, bordercolor=white]{}
 
 \columnbreak
 
@@ -54,11 +56,11 @@ Email \TextField[name=email, width=5cm]{}
     \fbox{
         \parbox{0.35\textwidth}{
             \small To be completed by Advisor \\
-            \small Current \TextField[name=current-plan, width=1.5cm]{} \hspace{1.3cm}\small Current \TextField[name=current-career, width=1.5cm]{}\\
+            \small Current \TextField[name=current-plan, width=1.5cm, bordercolor=white]{} \hspace{1.3cm}\small Current \TextField[name=current-career, width=1.5cm, bordercolor=white]{}\\
             \small Student Program/Plan    \hspace{0.7cm}\small Student Academic Career\\
-            \small Petition Effective \TextField[name=effective-before, width=6cm]{}\\
+            \small Petition Effective \TextField[name=effective-before, width=6cm, bordercolor=white]{}\\
             \parbox{10cm}{\hspace{2.8cm}\small BEFORE first class day Semester/Year}\\
-            \small Petition Effective \TextField[name=effective-after, width=6cm]{}\\
+            \small Petition Effective \TextField[name=effective-after, width=6cm, bordercolor=white]{}\\
             \parbox{10cm}{\hspace{2.8cm}\small AFTER first class day Semester/Year}
             }
         }
@@ -74,38 +76,41 @@ Mark number for purpose of petition (For numbers with an "*" complete EXPLANATIO
 
 \begin{multicols}{3}
 
-\
 \parbox{.9\columnwidth}{
+    \vspace{-1.5mm}
 
-    1. Update Student's Program Status/action (readmit, term activate, etc.) \TextField[name=update, width=2.5cm]{}
-    
-    2. Admission Status change from \TextField[name=status1, width=1.5cm]{} to \TextField[name=status2, width=1.5cm]{}
-    
-    3. Add a new career \TextField[name=career, width=5.5cm]{}
-        
+    \CheckBox[name=updatestatus, bordercolor=black]{} 1. Update Student's Program Status/action (readmit, term activate, etc.) \TextField[name=update, width=2.5cm, bordercolor=white]{}
+
+    \CheckBox[name=admissionstatus, bordercolor=black]{} 2. Admission Status change from \TextField[name=status1, width=1.5cm, bordercolor=white]{} to \TextField[name=status2, width=1.5cm, bordercolor=white]{}
+    \vspace{1mm}\\
+    \CheckBox[name=newcareer, bordercolor=black]{} 3. Add a new career \TextField[name=career, width=5.5cm, bordercolor=white]{}
+
     \hspace{0.5cm}If post baccalaureate, indicate study objective:
     
-        \parbox{9cm}{\hspace{1cm}Second bachelor's degree}\\
-        \parbox{9cm}{\hspace{1cm}Requirements for graduate study}\\
-        \parbox{9cm}{\hspace{1cm}Teacher certification}\\
-        \parbox{9cm}{\hspace{1cm}Personal enrichment}
+        \parbox{9cm}{\hspace{1cm}\CheckBox[name=secondbachelors, bordercolor=black]{} Second bachelor's degree}\\[1mm]
+        \parbox{9cm}{\hspace{1cm}\CheckBox[name=requirements, bordercolor=black]{} Requirements for graduate study}\\[1mm]
+        \parbox{9cm}{\hspace{1cm}\CheckBox[name=teachercert, bordercolor=black]{} Teacher certification}\\[1mm]
+        \parbox{9cm}{\hspace{1cm}\CheckBox[name=personalenrich, bordercolor=black]{} Personal enrichment}
     
-    *4. Student request Program Change from \TextField[name=change1, width=2cm]{} to \TextField[name=change2, width=2cm]{}
+
+    \CheckBox[name=programchange, bordercolor=black]{} *4. Student request Program Change from \TextField[name=change1, width=2cm, bordercolor=white]{} to \\[1mm]
+    \TextField[name=change2, width=2cm, bordercolor=white]{}
 
     }
 
 \columnbreak
 \parbox{0.9\columnwidth}{
-    *5. Student requests plan(major) change from \\ \TextField[name=major1, width=3cm]{} to \TextField[name=major2, width=3cm]{}
-    
-    *6. Degree objective/plan change (B.A,B.S,B.B.A., etc.) \\ \TextField[name=plan1, width=2cm]{} to \TextField[name=plan2, width=2cm]{}\\
+    \vspace{-1.5mm}
+    \CheckBox[name=majorchange, bordercolor=black]{} *5. Student requests plan(major) change from \\[1mm] \TextField[name=major1, width=3cm, bordercolor=white]{} to \TextField[name=major2, width=3cm, bordercolor=white]{}
+    \vspace{1mm}\\
+    \CheckBox[name=objectivechange, bordercolor=black]{} *6. Degree objective/plan change (B.A,B.S,B.B.A., etc.) \\[1mm] \TextField[name=plan1, width=2cm, bordercolor=white]{} to \TextField[name=plan2, width=2cm, bordercolor=white]{}\\
     \footnotesize If you are pursuing or intend to pursue more than one degree and plan at the same time, indicate second degree information under EXPLANATION OF REQUEST. (See number 5 if you are changing plan as well.)
     
-    *7. Requirement Term(year): \\
-    UH Catalog/Career \TextField[name=catalog, width=1.5cm]{} Program/Plan \TextField[name=program, width=1.5cm]{} 
+    \CheckBox[name=term, bordercolor=black]{} *7. Requirement Term(year): \\
+    UH Catalog/Career \TextField[name=catalog, width=1.5cm, bordercolor=white]{} Program/Plan \TextField[name=program, width=1.5cm, bordercolor=white]{} 
     
-    *8. Student Requests Additional Plan \\
-    \TextField[name=plan, width=2.5cm]{} BA/BS/Other\TextField[name=other, width=2.5cm]{} \\
+    \CheckBox[name=additionalplan, bordercolor=black]{} *8. Student Requests Additional Plan \\[1mm]
+    \TextField[name=plan, width=2.5cm, bordercolor=white]{} BA/BS/Other\TextField[name=other, width=2.5cm, bordercolor=white]{} \\[1mm]
     Is new plan your primary or secondary plan?\\
     \scriptsize Indicate any other plan and/or minors you are currently 
     pursuing Under EXPLANATION OF REQUEST.(See number 6 if you are Changing degree objectives.)
@@ -113,87 +118,85 @@ Mark number for purpose of petition (For numbers with an "*" complete EXPLANATIO
 
 \columnbreak
 \parbox{0.8\columnwidth}{
-    9. Add second Degree in \\
-    \TextField[name=degree, width=3cm]{} BA/BS/Other\TextField[name=other, width=3cm]{} \\
-    *10. Student request removal or change of minor from 
-    \TextField[name=minor1, width=3cm]{} to \TextField[name=minor2, width=3cm]{} \\
-    *11. Add additional Minor in \TextField[name=minor, width=4cm]{}
-    \\[-1mm]
-    *12. Degree requirement exception  \\
-    *13. Special Problem courses request (Indicate course(s),
-    course description and instructor.)
-    *14. Course overload (indicate G.P.A., number of hours
-    and courses)
-    15. Graduate studies leave of absence \\
-    *16. Graduate studies reinstatement \\
-    *17. Other
+    \vspace{-1.5mm}
+    \CheckBox[name=seconddegree, bordercolor=black]{} 9. Add second Degree in \\[1mm]
+    \TextField[name=degree, width=3cm, bordercolor=white]{} BA/BS/Other\TextField[name=other, width=3cm, bordercolor=white]{} \\[1mm]
+    \CheckBox[name=removalorchange, bordercolor=black]{} *10. Student request removal or change of minor from \\[1mm]
+    \TextField[name=minor1, width=3cm, bordercolor=white]{} to \TextField[name=minor2, width=3cm, bordercolor=white]{} \\[1mm]
+    \CheckBox[name=additionalminor, bordercolor=black]{} *11. Add additional Minor in \TextField[name=minor, width=3.5cm, bordercolor=white]{} \\[1mm]
+    \CheckBox[name=exception, bordercolor=black]{} *12. Degree requirement exception  \\[1mm]
+    \CheckBox[name=specialproblem, bordercolor=black]{} *13. Special Problem courses request (Indicate course(s), 
+    course description and instructor.) \\[1mm]
+    \CheckBox[name=courseoverload, bordercolor=black]{} *14. Course overload (indicate G.P.A., number of hours
+    and courses) \\
+    \CheckBox[name=graduateleave, bordercolor=black]{} 15. Graduate studies leave of absence \\[1mm]
+    \CheckBox[name=reinstatement, bordercolor=black]{} *16. Graduate studies reinstatement \\[1mm]
+    \CheckBox[name=other, bordercolor=black]{} *17. Other
     
 }
     
 \end{multicols}
-\vspace{-3mm}
-\noindent EXPLANATION OF REQUEST: \\
-\vspace{0.5mm}
+\vspace{-5mm}
+\noindent EXPLANATION OF REQUEST:\\
+\vspace{1mm}
     \foreach \i in {1, 2, 3} {
-        \TextField[name=explanation, width=30cm]{} \\
+        \vspace{1mm}
+        \TextField[name=explanation, width=30cm, bordercolor=black]{}\\
         \vspace{0.5mm}
     }
-
-\noindent Signature of Student 
-\IfFileExists{../../Signatures/signature_{username}.png}{%
-  \noindent
-  \raisebox{-0.1\height}{\includegraphics[width=0.3\textwidth, height=2cm]{../../Signatures/signature_{username}.png}}
-  \hspace{-0.3\textwidth} \hrulefill 
-  \hspace{-0.001\textwidth} Date \today{} \hrulefill
-   \hspace{0.1\textwidth}
-}{%
-\rule{10cm}{0.4pt} Date
-}
+\vspace{-0.2cm}
+\noindent Signature of Student \rule{10cm}{0.4pt} Date \TextField[name=date, width=5cm, bordercolor=white]{}
 
 \noindent\rule{32cm}{0.01pt}
 
+\vspace{2mm}
 \hspace{12cm}\textbf{\Large ACADEMIC OFFICE USE ONLY}
 \vspace{-2mm}
 \begin{multicols}{3}
 
+
 \parbox{0.8\columnwidth}{
-    Approved \\
-    Disapproved \hspace{0.5cm}Advisor/Instructor 
-    \vspace{0.2cm}
+    \CheckBox[name=approvedAI, bordercolor=black, height=0.3cm]{}Approved \\[1mm]
+    \CheckBox[name=disapprovedAI, bordercolor=black, height=0.3cm]{}Disapproved \hspace{0.5cm}Advisor/Instructor 
+    \vspace{0.3cm}
 
-    Approved \\
-    Disapproved \hspace{0.5cm}Chairperson 
-    \vspace{0.2cm}
+    \CheckBox[name=approvedC, bordercolor=black, height=0.3cm]{}Approved \\[1mm]
+    \CheckBox[name=disapprovedC, bordercolor=black, height=0.3cm]{}Disapproved \hspace{0.5cm}Chairperson 
+    \vspace{0.3cm}
 
-    Approved \\
-    Disapproved \hspace{0.5cm}College Dean
-    \vspace{0.2cm}
+    \CheckBox[name=approvedD, bordercolor=black, height=0.3cm]{}Approved \\[1mm]
+    \CheckBox[name=disapprovedD, bordercolor=black, height=0.3cm]{}Disapproved \hspace{0.5cm}College Dean
+    \vspace{0.3cm}
 
-    Approved \\
-    Disapproved \hspace{0.5cm}Sr. Vice President/Provost 
+    \CheckBox[name=approvedP, bordercolor=black, height=0.3cm]{}Approved \\[1mm]
+    \CheckBox[name=disapprovedP, bordercolor=black, height=0.3cm]{}Disapproved \hspace{0.5cm}Sr. Vice President/Provost 
 }
 
 \columnbreak
 
 \parbox{0.8\columnwidth}{
+    \vspace{1mm}
     \rule{3cm}{0.4pt}  
-    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm]{}
-    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm]{}
+    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm, bordercolor=white]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm, bordercolor=white]{}
     \small Signature \hspace{1.8cm}\small Printed Name \hspace{1.8cm}\small Date
+    \vspace{0.5cm}
 
     \rule{3cm}{0.4pt}  
-    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm]{}
-    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm]{}
+    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm, bordercolor=white]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm, bordercolor=white]{}
     \small Signature \hspace{1.8cm}\small Printed Name \hspace{1.8cm}\small Date
+    \vspace{0.5cm}
 
     \rule{3cm}{0.4pt}  
-    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm]{}
-    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm]{}
+    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm, bordercolor=white]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm, bordercolor=white]{}
     \small Signature \hspace{1.8cm}\small Printed Name \hspace{1.8cm}\small Date
+    \vspace{0.4cm}
 
     \rule{3cm}{0.4pt}  
-    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm]{}
-    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm]{}
+    \hspace{0.1cm} \TextField[name=p-name, width=3.5cm, bordercolor=white]{}
+    \hspace{0.1cm} \TextField[name=o-date, width=1.5cm, bordercolor=white]{}
     \small Signature \hspace{1.8cm}\small Printed Name \hspace{1.8cm}\small Date
 
     
@@ -205,8 +208,8 @@ Mark number for purpose of petition (For numbers with an "*" complete EXPLANATIO
         \parbox{0.75\columnwidth}{
             \textbf{COMMENTS}
             \\[2mm]
-            \foreach \i in {1, 2, 3, 4, 5}{\\[0.2mm]
-            \TextField[name=comments, width=8cm]{}
+            \foreach \i in {1, 2, 3, 4, 5, 6}{\\[0.2mm]
+            \TextField[name=comments, width=8cm, bordercolor=black]{}
             }
         }
     }
