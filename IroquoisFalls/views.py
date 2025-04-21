@@ -8,7 +8,7 @@ import shutil
 from django.http import JsonResponse, HttpResponse, Http404
 from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Users, StatusRequest, Signature
+from .models import Users, StatusRequest, Signature, StatusHistory
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -18,6 +18,7 @@ from django.core.files.base import ContentFile
 from django.conf import settings
 from subprocess import run
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Prefetch
 
 # Redirect users after login based on `is_admin`
 @login_required(login_url='/accounts/login/')
@@ -81,7 +82,9 @@ def AdminDash(request):
 @login_required
 def AdminForms(request):
     try:
-        statreqs = StatusRequest.objects.all()
+        statreqs = StatusRequest.objects.all().prefetch_related(
+            Prefetch('status_changes', queryset=StatusHistory.objects.select_related('changed_by'))
+        )
     except StatusRequest.DoesNotExist:
         raise Http404("Object not found")
     
@@ -335,12 +338,21 @@ def update_status_admin(request, statreq_id, action):
             'accept': 'accepted',
             'reject': 'rejected'
         }
+        
         if action in valid_actions:
             new_status = valid_actions[action]
             
             if statreq.status != new_status:
+                old_status = statreq.status
                 statreq.status = new_status
                 statreq.save()
+                
+                StatusHistory.objects.create(
+                    statReq = statreq,
+                    changed_by = request.user,
+                    old_status = old_status,
+                    new_status = new_status,
+                )
     return redirect('adminforms')
 
 from django.contrib.auth import authenticate, login

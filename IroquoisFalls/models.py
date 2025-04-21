@@ -1,6 +1,7 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
@@ -18,11 +19,10 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_active", True)
         return self.create_user(email, username, password, **extra_fields)
 
-class Users(AbstractBaseUser):  
+class Users(AbstractBaseUser, PermissionsMixin):  
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
-    FirstName = models.CharField(max_length=25, default="First")  # Default Value
-    LastName = models.CharField(max_length=25, default="Last")  # Default Value
+    name = models.CharField(max_length=255, default="Name")
     phone_number = models.BigIntegerField(default= "0000000000")  # Allow NULL
     address = models.TextField(default="Unknown Address")  # Default Value
     DoB = models.DateField(null=True, blank=True)  # Allow NULL
@@ -73,3 +73,12 @@ class StatusRequest(models.Model):
     def get_status_display(self):
         return dict(self.STATUS_CHOICES).get(self.status, 'Unknown')
 
+class StatusHistory(models.Model):
+    statReq = models.ForeignKey('StatusRequest', on_delete=models.CASCADE, related_name='status_changes')
+    changed_by = models.ForeignKey('Users', on_delete=models.SET_NULL, null=True, blank=True)
+    changed_at = models.DateTimeField(default=timezone.now)
+    old_status = models.CharField(max_length=30, choices=StatusRequest.STATUS_CHOICES)
+    new_status = models.CharField(max_length=30, choices=StatusRequest.STATUS_CHOICES)
+    
+    def __str__(self):
+        return f"{self.statReq} changed from {self.old_status} to {self.new_status} by {self.changed_by}"
