@@ -19,7 +19,13 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_active", True)
         return self.create_user(email, username, password, **extra_fields)
 
-class Users(AbstractBaseUser, PermissionsMixin):  
+class Users(AbstractBaseUser, PermissionsMixin):
+    ROLE_CHOICES = [
+        ('user', 'User'),
+        ('manager', 'Manager'),
+        ('admin', 'Admin'),
+    ]
+
     email = models.EmailField(unique=True)
     username = models.CharField(unique=True, max_length=20)
     name = models.CharField(max_length=255, default="Name")
@@ -28,6 +34,8 @@ class Users(AbstractBaseUser, PermissionsMixin):
     DoB = models.DateField(null=True, blank=True)  # Allow NULL
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
     objects = UserManager()
 
