@@ -138,6 +138,7 @@ def AddUser(request):
                 DoB=form.cleaned_data['DoB'],
                 is_active=form.cleaned_data['is_active'],
                 is_admin=form.cleaned_data['is_admin'],
+                is_manager=form.cleaned_data['is_manager'],
             )
             new_user.save()
             return render(request, "IroquoisFalls/admin_add_user.html", {
