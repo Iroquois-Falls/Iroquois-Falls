@@ -26,6 +26,7 @@
                                             <th scope="col">DoB</th>
                                             <th scope="col">Active Status</th>
                                             <th scope="col">Admin Status</th>
+                                            <th scope="col">Manager Status</th>
                                             <th scope="col">Actions</th>
                                           </tr>
                                         </thead>
@@ -44,6 +45,7 @@
                                             <td> {{ Users.DoB }} </td>
                                             <td> {{ Users.is_active }} </td>
                                             <td> {{ Users.is_admin }} </td>
+                                            <td> {{ Users.is_manager }} </td>
                                             <td> 
                                                 <button type="button" class="btn btn-success me-1" data-bs-toggle="modal" data-bs-target="#myModal{{ Users.id }}">
                                                     <i class="fa-solid fa-circle-info"></i>
@@ -71,6 +73,7 @@
                                                                     <li>DoB: <strong>{{ Users.DoB }}</strong></li>
                                                                     <li>is Active: <strong>{{ Users.is_active }}</strong></li>
                                                                     <li>is Admin: <strong>{{ Users.is_admin }}</strong></li>
+                                                                    <li>is Manager: <strong>{{ Users.is_manager }}</strong></li>
                                                                 </ul>
                                                             </div>
                                                             <div class="modal-footer">
