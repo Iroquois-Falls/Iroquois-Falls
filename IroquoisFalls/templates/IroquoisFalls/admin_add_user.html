@@ -42,6 +42,7 @@
                 {{ form.DoB.label_tag }} {{ form.DoB }}
                 {{ form.is_active.label_tag }} {{ form.is_active }}
                 {{ form.is_admin.label_tag }} {{ form.is_admin }}
+                {{ form.is_manager.label_tag }} {{ form.is_manager }}
 
                 <button type="submit" class="btn btn-primary">Add</button>
                 <a href="{% url 'admindash' %}" class="btn btn-secondary">Cancel</a>
@@ -68,8 +69,6 @@ function generatePassword() {
         });
 }
 </script>
-
-
 
 {% endif %}
 {% endblock %}
