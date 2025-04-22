@@ -18,6 +18,7 @@ class UserForm(forms.ModelForm):
             "DoB": "Date of Birth",
             "is_active": "Is Active",
             "is_admin": "Is Admin",
+            "is_manager": "Is Manager",
         }
         widgets = {
             "id": forms.NumberInput(attrs={'class': 'form-control'}),
@@ -31,4 +32,5 @@ class UserForm(forms.ModelForm):
             "DoB": forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             "is_active": forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             "is_admin": forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            "is_manager": forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
