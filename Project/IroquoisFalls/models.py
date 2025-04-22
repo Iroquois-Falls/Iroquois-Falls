@@ -51,6 +51,8 @@ class StatusRequest(models.Model):
     TITLE_CHOICES = [
         ('inter_institutional_course_registration', 'Inter-Institutional Course Registration Form'),
         ('undergraduate_general_petition', 'Undergraduate General Petition'),
+        ('term_withdrawal', 'Term Withdrawal'),
+        ('petition_form', 'Petition Form'),
     ]
     
     STATUS_CHOICES = [
