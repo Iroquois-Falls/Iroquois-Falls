@@ -34,6 +34,7 @@ class Users(AbstractBaseUser, PermissionsMixin):
     DoB = models.DateField(null=True, blank=True)  # Allow NULL
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    is_manager = models.BooleanField(default=False)
 
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
